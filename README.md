@@ -40,7 +40,7 @@ render(<Index />, document.getElementById("root"));
 import React from 'react';
 import useTodos from "@theuybv/use-todos";
 const SomeComp = () => {
-  const {actions, selectors, VISIBILITY_FILTERS} = useSelectors();
+  const {actions, selectors, VISIBILITY_FILTERS} = useTodos();
   const {toggleTodo, addTodo, setVisibility} = actions; // similar to stateToProps
   const {todos, active} = selectors; // similar to dispatchToProps
   const {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} = VISIBILITY_FILTERS;
