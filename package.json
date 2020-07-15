@@ -1,5 +1,5 @@
 {
-  "name": "@theuybv/useTodos",
+  "name": "@theuybv/use-todos",
   "version": "1.0.0",
   "description": "Made with create-react-library",
   "author": "theuybv",
@@ -22,6 +22,9 @@
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "react": "^16.13.1"

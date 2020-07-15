@@ -2,46 +2,80 @@ import React, { useCallback } from 'react';
 import { combineReducers, createStore } from 'redux';
 import { useDispatch, useSelector, Provider } from 'react-redux';
 
-const todos = (state = [], action) => {
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+var todos = function todos(state, action) {
+  if (state === void 0) {
+    state = [];
+  }
+
   switch (action.type) {
     case 'ADD_TODO':
-      return [...state, {
+      return [].concat(state, [{
         id: action.id,
         text: action.text,
         completed: false
-      }];
+      }]);
 
     case 'TOGGLE_TODO':
-      return state.map(todo => todo.id === action.id ? { ...todo,
-        completed: !todo.completed
-      } : todo);
+      return state.map(function (todo) {
+        return todo.id === action.id ? _extends({}, todo, {
+          completed: !todo.completed
+        }) : todo;
+      });
 
     default:
       return state;
   }
 };
 
-let nextTodoId = 0;
-const addTodo = text => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  text
-});
-const setVisibilityFilter = filter => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
-});
-const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
-  id
-});
-const VisibilityFilters = {
+var nextTodoId = 0;
+var addTodo = function addTodo(text) {
+  return {
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    text: text
+  };
+};
+var setVisibilityFilter = function setVisibilityFilter(filter) {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter: filter
+  };
+};
+var toggleTodo = function toggleTodo(id) {
+  return {
+    type: 'TOGGLE_TODO',
+    id: id
+  };
+};
+var VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ACTIVE'
 };
 
-const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
+var visibilityFilter = function visibilityFilter(state, action) {
+  if (state === void 0) {
+    state = VisibilityFilters.SHOW_ALL;
+  }
+
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter;
@@ -52,51 +86,55 @@ const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
 };
 
 var rootReducer = combineReducers({
-  todos,
-  visibilityFilter
+  todos: todos,
+  visibilityFilter: visibilityFilter
 });
 
-const store = createStore(rootReducer);
+var store = createStore(rootReducer);
 
-const getVisibleTodos = (todos, filter) => {
+var getVisibleTodos = function getVisibleTodos(todos, filter) {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
       return todos;
 
     case VisibilityFilters.SHOW_COMPLETED:
-      return todos.filter(t => t.completed);
+      return todos.filter(function (t) {
+        return t.completed;
+      });
 
     case VisibilityFilters.SHOW_ACTIVE:
-      return todos.filter(t => !t.completed);
+      return todos.filter(function (t) {
+        return !t.completed;
+      });
 
     default:
       throw new Error("Unknown filter: " + filter);
   }
 };
 
-const useTodos = () => {
-  const dispatch = useDispatch();
+var useTodos = function useTodos() {
+  var dispatch = useDispatch();
   return {
     VISIBILITY_FILTERS: VisibilityFilters,
     actions: {
-      toggleTodo: id => {
+      toggleTodo: function toggleTodo$1(id) {
         dispatch(toggleTodo(id));
       },
-      addTodo: value => {
+      addTodo: function addTodo$1(value) {
         dispatch(addTodo(value));
       },
-      setVisibility: useCallback(filter => {
-        return () => {
+      setVisibility: useCallback(function (filter) {
+        return function () {
           dispatch(setVisibilityFilter(filter));
         };
       }, [dispatch])
     },
     selectors: {
-      todos: useSelector(state => {
+      todos: useSelector(function (state) {
         return getVisibleTodos(state.todos, state.visibilityFilter);
       }),
-      active: useSelector(state => {
-        return filter => {
+      active: useSelector(function (state) {
+        return function (filter) {
           return filter === state.visibilityFilter;
         };
       })
@@ -104,9 +142,8 @@ const useTodos = () => {
   };
 };
 
-const TodosProvider = ({
-  children
-}) => {
+var TodosProvider = function TodosProvider(_ref) {
+  var children = _ref.children;
   return /*#__PURE__*/React.createElement(Provider, {
     store: store
   }, children);
