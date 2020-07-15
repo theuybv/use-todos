@@ -93,8 +93,6 @@ var rootReducer = redux.combineReducers({
   visibilityFilter: visibilityFilter
 });
 
-var store = redux.createStore(rootReducer);
-
 var getVisibleTodos = function getVisibleTodos(todos, filter) {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
@@ -111,7 +109,7 @@ var getVisibleTodos = function getVisibleTodos(todos, filter) {
       });
 
     default:
-      throw new Error("Unknown filter: " + filter);
+      throw new Error('Unknown filter: ' + filter);
   }
 };
 
@@ -147,6 +145,7 @@ var useTodos = function useTodos() {
 
 var TodosProvider = function TodosProvider(_ref) {
   var children = _ref.children;
+  var store = redux.createStore(rootReducer);
   return /*#__PURE__*/React__default.createElement(reactRedux.Provider, {
     store: store
   }, children);
