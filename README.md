@@ -1,5 +1,7 @@
 # Simplifying the React Redux Example Todo List App with custom use-todos hooks
 
+Example Redux Todo App: https://redux.js.org/basics/example
+
 > Made with create-react-library
 
 [![NPM](https://img.shields.io/npm/v/test.svg)](https://www.npmjs.com/package/test) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
