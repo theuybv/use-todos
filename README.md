@@ -1,4 +1,4 @@
-# test
+# Simplifying the React Redux Example Todo List App with custom use-todos hooks
 
 > Made with create-react-library
 
@@ -7,21 +7,46 @@
 ## Install
 
 ```bash
-npm install --save test
+npm install --save @theuybv/use-todos
 ```
 
-## Usage
+## Redux Store Provider on App level
 
 ```jsx
-import React, { Component } from 'react'
+import React from "react";
+import { render } from "react-dom";
+import App from "./components/App";
 
-import MyComponent from 'test'
-import 'test/dist/index.css'
+import {TodosProvider} from "@theuybv/use-todos";
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const Index = () => {
+
+  return (
+    <TodosProvider>
+      {" "}
+      <App />
+    </TodosProvider>
+  );
+};
+
+render(<Index />, document.getElementById("root"));
+
+```
+
+## Actions, Selectors and Constants
+```jsx
+import React from 'react';
+import useTodos from "@theuybv/use-todos";
+const SomeComp = () => {
+  const {actions, selectors, VISIBILITY_FILTERS} = useSelectors();
+  const {toggleTodo, addTodo, setVisibility} = actions; // similar to stateToProps
+  const {todos, active} = selectors; // similar to dispatchToProps
+  const {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} = VISIBILITY_FILTERS;
+
+
+  return (
+    <div>Do something with it!</div>
+  )
 }
 ```
 
