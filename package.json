@@ -1,6 +1,6 @@
 {
   "name": "@theuybv/use-todos",
-  "version": "1.0.4",
+  "version": "1.0.3",
   "description": "Made with create-react-library",
   "author": "theuybv",
   "license": "MIT",
@@ -27,7 +27,11 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
@@ -45,15 +49,9 @@
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.4",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "prettier": "^2.0.4"
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
-  }
+  ]
 }

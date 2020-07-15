@@ -109,7 +109,7 @@ var getVisibleTodos = function getVisibleTodos(todos, filter) {
       });
 
     default:
-      throw new Error('Unknown filter: ' + filter);
+      throw new Error("Unknown filter: " + filter);
   }
 };
 
